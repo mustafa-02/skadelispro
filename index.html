@@ -25,7 +25,7 @@
         <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
           <li class="nav-item"><a href="#beranda" class="nav-link">Beranda</a></li>
           <li class="nav-item"><a href="#profile" class="nav-link">Profile</a></li>
-          <li class="nav-item"><a href="#project" class="nav-link">Project</a></li>
+          <li class="nav-item"><a href="#portfolio" class="nav-link">Project</a></li>
           <li class="nav-item"><a href="#kontak" class="nav-link">Kontak</a></li>
         </ul>
       </div>
@@ -56,7 +56,7 @@
   <!-- Profile DKV End -->
 
   <!-- Project Siswa Start -->
-  <section class="page-section" id="project">
+  <section class="page-section" id="portfolio">
     <div class="container">
       <div class="text-center">
         <h2 class="section-heading text-uppercase">Project Siswa</h2>
@@ -92,10 +92,35 @@
   </footer>
   <!-- Footer End -->
 
+  <div class="portfolio-modal modal fade" id="cardModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal"/></div>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <div class="modal-body">
+                <!-- Project Detail start -->
+                <h2 class="text-uppercase" id="modalTitle"></h2>
+                <p class="item-intro text-muted" id="modalDescription"></p>
+                <img src="" alt="sampul" class="img-fluid d-block mx-auto" id="modalImage">
+                <iframe src="" width="100%" height="100%" id="modalIframe"></iframe>
+
+                <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                  <i class="fas fa-xmark me-1"></i>
+                  Close Project
+                </button>
+                <!-- Project Detail End -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="js/myscripts.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"></script>
   <script src="js/scripts.js"></script>
 </body>

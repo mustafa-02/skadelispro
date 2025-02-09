@@ -1,7 +1,7 @@
 const url = "https://script.google.com/macros/s/AKfycbyxqGGQmdkALun_lyMgeiSserVKHQ03pcsN6F05wubvzqtuU3flkevNn0Nz_iX87MRi/exec";
 async function fetchCards() {
   let cachedData = localStorage.getItem("cardsData");
-  if(cachedData) {
+  if (cachedData) {
     renderCards(JSON.parse(cachedData));
     return;
   }
@@ -12,7 +12,7 @@ async function fetchCards() {
     console.log(data);
 
     renderCards(data);
-    
+
   } catch (error) {
     console.error("Error Fetching data: ", error);
   }
@@ -20,28 +20,44 @@ async function fetchCards() {
 
 function renderCards(data) {
   let container = document.getElementById("cardContainer");
-    container.innerHTML = "";
+  container.innerHTML = "";
 
-    data.forEach(item => {
-      let card = document.createElement("div");
-      card.className = "col";
-      card.innerHTML = `
-          <div class="card">
-            <img src="xiDKVStudent/${item.folder}/assets/img/${item.image}" alt="sampul" class="card-img-top" onerror="this.onerror=null; this.src='assets/img/sampul.JPG';">
-            <div class="card-body">
-              <h5 class="card-title">${item.title}</h5>
-              <p class="card-text">${item.description}</p>
-              <a href="xiDKVStudent/${item.folder}/index.html" class="btn btn-primary">Buka</a>
+  data.forEach(item => {
+    let card = document.createElement("div");
+    card.className = "col";
+    card.innerHTML = `
+          <div class="portfolio-item" onclick="openModal('${item.title}','${item.description}', 'xiDKVStudent/${item.folder}/assets/img/${item.image}', 'xiDKVStudent/${item.folder}/index.html')">
+            <a class="portfolio-link" data-bs-toggle="modal" href="#cardModal" >
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+              </div>
+              <img src="xiDKVStudent/${item.folder}/assets/img/${item.image}" style="width: 100%;" alt="sampul" onerror="this.onerror=null; this.src='assets/img/sampul.JPG';">
+            </a>
+            <div class="portfolio-caption">
+              <div class="portfolio-caption-heading">${item.title}</div>
+              <div class="portfolio-caption-subheading text-muted">${item.description}</div>
+              <a class="portfolio-caption-subheading text-muted text-decoration-none" href="xiDKVStudent/${item.folder}/index.html">Klik untuk melihat</a>
             </div>
           </div>
       `;
-      container.appendChild(card);
-    });
+    container.appendChild(card);
+  });
+}
+
+function openModal(title, description, image, link) {
+  document.getElementById("modalTitle").innerText = title;
+  document.getElementById("modalDescription").innerText = description;
+  let imgElement = document.getElementById("modalImage");
+  imgElement.src = image
+  imgElement.onerror=function() {
+    imgElement.src = "assets/img/sampul.JPG"
+  }
+  document.getElementById("modalIframe").src = link;
 }
 
 window.onload = fetchCards;
 
-window.addEventListener("beforeunload", ()=> {
+window.addEventListener("beforeunload", () => {
   setTimeout(() => {
     localStorage.removeItem("cardsData");
   }, 10000);
