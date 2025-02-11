@@ -9,10 +9,7 @@ async function fetchCards() {
     let response = await fetch(url);
     let data = await response.json();
     localStorage.setItem("cardsData", JSON.stringify(data));
-    console.log(data);
-
     renderCards(data);
-
   } catch (error) {
     console.error("Error Fetching data: ", error);
   }
